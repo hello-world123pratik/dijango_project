@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Jobs You Applied For</h2>
+
+{% if applications %}
+    <div class="list-group">
+        {% for application in applications %}
+            <a href="{% url 'job_detail' application.job.id %}" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">{{ application.job.title }}</h5>
+                <p class="mb-1 text-muted">
+                    Company: {{ application.job.company_name }}<br>
+                    Location: {{ application.job.location }}<br>
+                    Applied on: {{ application.applied_at|date:"F j, Y, g:i a" }}
+                </p>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        You haven’t applied to any jobs yet.
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ job.title }}</h2>
+<p><strong>Company:</strong> {{ job.company }}</p>
+<p><strong>Location:</strong> {{ job.location }}</p>
+<p><strong>Description:</strong></p>
+<p>{{ job.description|linebreaks }}</p>
+
+{% if user.is_authenticated and user.profile.role == 'job_seeker' %}
+    <a href="{% url 'apply_job' job.pk %}" class="btn btn-success">Apply for this job</a>
+{% elif not user.is_authenticated %}
+    <p class="text-muted mt-3">Please <a href="{% url 'login' %}">log in</a> to apply for this job.</p>
+{% elif user.profile.role == 'employer' %}
+    <p class="text-muted mt-3">Employers cannot apply for jobs.</p>
+{% endif %}
+
+<a href="{% url 'job_list' %}" class="btn btn-secondary mt-3">Back to Listings</a>
+{% endblock %}

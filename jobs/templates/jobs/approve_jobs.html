@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Approve Jobs{% endblock %}
+
+{% block content %}
+<h2>Jobs Pending Approval</h2>
+
+{% if pending_jobs %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in pending_jobs %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.company }}</td>
+                <td>{{ job.posted_by.username }}</td>
+                <td>
+                    <form method="post" action="{% url 'approve_job' job.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-success btn-sm" type="submit">Approve</button>
+                    </form>
+                    <form method="post" action="{% url 'reject_job' job.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-sm" type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No jobs pending approval.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Applications Received{% endblock %}
+
+{% block content %}
+<h2>Applications Received</h2>
+
+{% if applications %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Job</th>
+                <th>Applicant</th>
+                <th>Resume</th>
+                <th>Cover Letter</th>
+                <th>Applied On</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for app in applications %}
+            <tr>
+                <td><a href="{% url 'job_detail' app.job.pk %}">{{ app.job.title }}</a></td>
+                <td>{{ app.user.username }}</td>
+                <td>
+                    {% if app.resume %}
+                        <a href="{{ app.resume.url }}" target="_blank">View Resume</a>
+                    {% else %}
+                        No Resume
+                    {% endif %}
+                </td>
+                <td>{{ app.cover_letter|linebreaksbr }}</td>
+                <td>{{ app.created_at|date:"M d, Y" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No applications received yet.</p>
+{% endif %}
+{% endblock %}

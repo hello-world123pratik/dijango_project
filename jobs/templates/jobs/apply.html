@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply for {{ job.title }}{% endblock %}
+
+{% block content %}
+<h2>Apply for {{ job.title }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="resume" class="form-label">Upload Resume (PDF)</label>
+        <input type="file" name="resume" id="resume" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="cover_letter" class="form-label">Cover Letter</label>
+        <textarea name="cover_letter" id="cover_letter" rows="5" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+    <a href="{% url 'job_detail' job.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

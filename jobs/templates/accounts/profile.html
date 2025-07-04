@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ profile.user.username }}'s Profile</h2>
+
+  <p><strong>Skills:</strong> {{ profile.skills }}</p>
+  <p><strong>Education:</strong> {{ profile.education }}</p>
+  <p><strong>Experience:</strong> {{ profile.experience }}</p>
+
+  {% if profile.resume %}
+    <p><a href="{{ profile.resume.url }}">Download Resume</a></p>
+  {% endif %}
+
+  <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+{% endblock %}
