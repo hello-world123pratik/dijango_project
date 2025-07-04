@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Listings{% endblock %}
+
+{% block content %}
+<h2>Job Listings</h2>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-5">
+        <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search by title or company">
+    </div>
+    <div class="col-md-5">
+        <input type="text" name="location" value="{{ request.GET.location }}" class="form-control" placeholder="Location">
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+</form>
+
+{% if jobs %}
+    <div class="list-group">
+    {% for job in jobs %}
+        <div class="list-group-item mb-2">
+            <h5 class="mb-1">
+                <a href="{% url 'job_detail' job.pk %}">{{ job.title }}</a>
+                <small class="text-muted">at {{ job.company }}</small>
+            </h5>
+            <p class="mb-1">{{ job.location }}</p>
+            <small>Posted on {{ job.created_at|date:"M d, Y" }}</small>
+
+            {% if user.is_authenticated and user.profile.role == 'job_seeker' %}
+                <div class="mt-2">
+                    <a href="{% url 'apply_job' job.pk %}" class="btn btn-sm btn-success">Apply</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No jobs found.</p>
+{% endif %}
+{% endblock %}

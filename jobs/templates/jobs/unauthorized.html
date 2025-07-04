@@ -1,0 +1,14 @@
+<!-- templates/unauthorized.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="alert alert-danger text-center shadow p-4 rounded" role="alert">
+    <h2 class="alert-heading">Access Denied</h2>
+    <p class="mb-0">You are not authorized to access this page.</p>
+    <hr>
+    <a href="{% url 'login' %}" class="btn btn-primary mt-3">Login as different user</a>
+    <a href="{% url 'job_list' %}" class="btn btn-secondary mt-3">Back to Home</a>
+  </div>
+</div>
+{% endblock %}

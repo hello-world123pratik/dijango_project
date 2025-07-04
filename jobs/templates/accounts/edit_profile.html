@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<h2>Edit Profile</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="resume" class="form-label">Upload Resume (PDF)</label>
+        <input type="file" name="resume" id="resume" class="form-control">
+        {% if profile.resume %}
+            <small>Current: <a href="{{ profile.resume.url }}" target="_blank">View Resume</a></small>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        <label for="skills" class="form-label">Skills</label>
+        <input type="text" name="skills" id="skills" class="form-control" value="{{ profile.skills }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="education" class="form-label">Education</label>
+        <textarea name="education" id="education" rows="3" class="form-control">{{ profile.education }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="experience" class="form-label">Experience</label>
+        <textarea name="experience" id="experience" rows="3" class="form-control">{{ profile.experience }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}
