@@ -51,7 +51,7 @@ The application is designed to streamline the job posting and application proces
 
 ## Project Structure
 
-```bash
+```bash id="s7p4ak"
 jobboard/
 ├── jobboard/        # Main project configuration
 ├── jobs/            # Core application (models, views, templates)
@@ -65,9 +65,7 @@ jobboard/
 
 ## Environment Configuration
 
-Create a `.env` file or configure environment variables:
-
-```env
+```env id="0lq3v9"
 SECRET_KEY=your_secret_key
 DEBUG=True
 ALLOWED_HOSTS=dijango-project.onrender.com
@@ -77,35 +75,15 @@ ALLOWED_HOSTS=dijango-project.onrender.com
 
 ## Local Development Setup
 
-### Clone the repository
-
-```bash
+```bash id="c8txx1"
 git clone https://github.com/hello-world123pratik/dijango_project.git
 cd dijango_project
-```
 
-### Create virtual environment
-
-```bash
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
-```
 
-### Install dependencies
-
-```bash
 pip install -r requirements.txt
-```
-
-### Apply migrations
-
-```bash
 python manage.py migrate
-```
-
-### Run development server
-
-```bash
 python manage.py runserver
 ```
 
@@ -139,16 +117,7 @@ The application is deployed on Render. Static and media files are configured usi
 
 ---
 
-## Future Improvements
-
-* Integration with PostgreSQL for production database
-* Email notifications for job applications
-* Advanced search and filtering for jobs
-* Pagination for job listings
-* REST API integration for scalability
-
----
-
 ## License
 
 This project is open-source and available under the MIT License.
+
