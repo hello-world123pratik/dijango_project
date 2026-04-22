@@ -1,1 +1,0 @@
-# dijango_project
