@@ -6,7 +6,7 @@ JobBoard is a web-based application built with Django that enables employers to 
 
 ## Live Application
 
-https://dijango-project.onrender.com/
+https://django-project-zxwf.onrender.com
 
 ---
 
